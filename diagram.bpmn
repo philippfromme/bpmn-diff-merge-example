@@ -4,7 +4,7 @@
     <bpmn:startEvent id="Event_05ldsxe" name="Order placed">
       <bpmn:outgoing>Flow_09yx3qu</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:serviceTask id="Activity_15jo6gv" name="Check stock">
+    <bpmn:serviceTask id="Activity_15jo6gv" name="Check if in stock">
       <bpmn:incoming>Flow_09yx3qu</bpmn:incoming>
       <bpmn:outgoing>Flow_11l4u9m</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -23,12 +23,12 @@
       <bpmn:incoming>Flow_12bc12w</bpmn:incoming>
       <bpmn:outgoing>Flow_06io0jg</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:serviceTask id="Activity_0q8pkgm" name="Invoice customer">
+    <bpmn:serviceTask id="Activity_0q8pkgm" name="Send invoice">
       <bpmn:extensionElements>
         <zeebe:taskDefinition type="sendInvoice" />
         <zeebe:ioMapping>
-          <zeebe:input source="=data.cost" target="cost" />
-          <zeebe:input source="=data.shippingCost" target="shippingCost" />
+          <zeebe:input source="=cost" target="cost" />
+          <zeebe:input source="=shippingCost" target="shippingCost" />
         </zeebe:ioMapping>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_06io0jg</bpmn:incoming>
@@ -77,15 +77,15 @@
         <dc:Bounds x="680" y="90" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0k2ccvr_di" bpmnElement="Activity_1pafz8a">
-        <dc:Bounds x="520" y="200" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_0v4wk0c_di" bpmnElement="Gateway_0v4wk0c" isMarkerVisible="true">
         <dc:Bounds x="845" y="105" width="50" height="50" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1w6na8i_di" bpmnElement="Event_1w6na8i">
         <dc:Bounds x="962" y="112" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0k2ccvr_di" bpmnElement="Activity_1pafz8a">
+        <dc:Bounds x="680" y="200" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_09yx3qu_di" bpmnElement="Flow_09yx3qu">
         <di:waypoint x="208" y="130" />
@@ -102,24 +102,24 @@
           <dc:Bounds x="484" y="112" width="18" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0zf941v_di" bpmnElement="Flow_0zf941v">
-        <di:waypoint x="440" y="155" />
-        <di:waypoint x="440" y="240" />
-        <di:waypoint x="520" y="240" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="448" y="195" width="15" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_06io0jg_di" bpmnElement="Flow_06io0jg">
         <di:waypoint x="620" y="130" />
         <di:waypoint x="680" y="130" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0zf941v_di" bpmnElement="Flow_0zf941v">
+        <di:waypoint x="440" y="155" />
+        <di:waypoint x="440" y="240" />
+        <di:waypoint x="680" y="240" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="448" y="195" width="15" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0ht7qa0_di" bpmnElement="Flow_0ht7qa0">
         <di:waypoint x="780" y="130" />
         <di:waypoint x="845" y="130" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0sba8kt_di" bpmnElement="Flow_0sba8kt">
-        <di:waypoint x="620" y="240" />
+        <di:waypoint x="780" y="240" />
         <di:waypoint x="870" y="240" />
         <di:waypoint x="870" y="155" />
       </bpmndi:BPMNEdge>
